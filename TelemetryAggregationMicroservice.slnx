@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="TelemetryAggregationMicroservice/DataIngestionService.csproj" />
+  <Project Path="WorkerService/WorkerService.csproj" />
+</Solution>
