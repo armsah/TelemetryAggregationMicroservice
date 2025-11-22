@@ -94,13 +94,13 @@ public class DataReceiver : BackgroundService
                 return;
             }
 
-            // 1️⃣ Save device info to SQL
+            // Save device info to SQL
             await UpsertDeviceInfoAsync(telemetry);
 
-            // 2️⃣ Save raw telemetry to Cosmos DB
+            // Save raw telemetry to Cosmos DB
             await SaveTelemetryToCosmosAsync(telemetry);
 
-            // 3️⃣ Complete message after successful processing
+            // Complete message after successful processing
             await args.CompleteMessageAsync(args.Message);
             _logger.LogInformation($"Message {messageId} processed successfully.");
         }
