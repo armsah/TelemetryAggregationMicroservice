@@ -1,4 +1,5 @@
 <Solution>
+  <Project Path="FakeDeviceDataSender.Tests/FakeDeviceDataSender.Tests.csproj" Id="522775f4-152b-4e95-8ab5-b16b8c3fed40" />
   <Project Path="TelemetryAggregationMicroservice/DataIngestionService.csproj" />
   <Project Path="WorkerService/WorkerService.csproj" />
 </Solution>
