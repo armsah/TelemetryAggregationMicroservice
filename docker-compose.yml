@@ -1,0 +1,36 @@
+# Docker Compose file defines a three-container local stack:
+# 1. Data Ingestion Service - sends fake telemetry to Service Bus.
+# 2. Worker Service - processes telemetry and stores data in SQL Server.
+# 3. Azure Service Bus Emulator - provides a local Service Bus for dev/testing.
+
+
+version: '3.9' 
+
+services:
+  data-ingestion:
+    build:
+      context: ./DataIngestionService 
+      dockerfile: Dockerfile
+    environment:
+      SERVICE_BUS_CONNECTION_STRING: "Endpoint=sb://devbus/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=FakeKey"
+      SERVICE_BUS_TOPIC_NAME: "telemetry"
+    depends_on:
+      - az-servicebus
+
+  worker-service:
+    build:
+      context: ./WorkerService
+      dockerfile: Dockerfile
+    environment:
+      QUEUE_NAME: "telemetry"
+      SERVICE_BUS_CONNECTION_STRING: "Endpoint=sb://devbus/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=FakeKey"
+      SQL_SERVER_CONNECTION_STRING: "Server=sqlserver,1433;Database=TelemetryDb;User Id=SA;Password=YourStrong!Passw0rd;"
+    depends_on:
+      - az-servicebus
+
+  az-servicebus:
+    image: mcr.microsoft.com/azure-service-bus/emulator:latest
+    container_name: az-servicebus
+    ports:
+      - "5672:5672" # AMQP protocol port for applications to connect and send/receive messages.
+      - "8080:8080" # HTTP management port (if the emulator provides a web interface).

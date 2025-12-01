@@ -1,0 +1,16 @@
+# Visual Studio temporary files
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build outputs
+bin/
+obj/
+
+# Docker overrides
+docker-compose.override.yml
+
+# Optional: JetBrains IDEs
+.idea/

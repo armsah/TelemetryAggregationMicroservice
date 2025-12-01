@@ -1,0 +1,13 @@
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <DockerComposeProjectPath>.\docker-compose.yml</DockerComposeProjectPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="docker-compose.yml" />
+    <None Include="docker-compose.override.yml" />
+  </ItemGroup>
+
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\Docker\Microsoft.VisualStudio.Docker.Compose.targets" />
+</Project>

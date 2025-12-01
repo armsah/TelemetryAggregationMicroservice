@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="docker-compose.dcproj" />
+    <File Path="docker-compose.override.yml" />
+    <File Path="docker-compose.yml" />
+  </Folder>
+  <Project Path="TelemetryAggregationMicroservice/DataIngestionService.csproj" />
+  <Project Path="WorkerService/WorkerService.csproj" Id="765565db-28c7-4fb1-8359-860542330c41" />
+</Solution>
