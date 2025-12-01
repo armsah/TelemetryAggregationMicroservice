@@ -1,0 +1,17 @@
+# SQL Server (and other dev-specific settings)
+
+version: '3.9' # Use Docker Compose version 3.9
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest # Official Microsoft SQL Server 2022 image
+    container_name: sqlserver
+    environment:
+      SA_PASSWORD: YourStrong!Passw0rd # Sets the password for the SA (system administrator) user
+      ACCEPT_EULA: Y # Accepts the end-user license agreement
+    ports:
+      - "1433:1433" # Maps port 1433 on the host to port 1433 in the container
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P YourStrong!Passw0rd -Q 'SELECT 1'"] # Docker runs this command to check container health
+      interval: 10s # Time between health checks
+      retries: 5 # Number of retries before marking the container as unhealthy
